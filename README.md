@@ -83,3 +83,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 
 https://medium.com/swlh/how-to-host-your-laravel-application-for-free-on-heroku-4789688d444b
 
+https://medium.com/@just1and0/how-to-setup-database-on-heroku-for-your-laravel-application-6a903c2c75c7
