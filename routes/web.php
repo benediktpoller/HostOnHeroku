@@ -16,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::middleware('cors')->get('/api', function () {
+    return response()
+        ->json([
+            ['id' => '1', 'name' => 'AVL', 'url' => 'https://www.avl.com'],
+            ['id' => '2', 'name' => 'ASFINAG', 'url' => 'https://asfinag.at']
+        ]);
+});
