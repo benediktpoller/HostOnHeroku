@@ -31,3 +31,5 @@ Route::get('/api/monitors/{id}', function ($id) {
             ['id' => $id, 'name' => 'AVL', 'url' => 'https://www.avl.com']
         );
 });
+
+Route::get('mail', 'MailController@show');
