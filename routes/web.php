@@ -17,7 +17,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware('cors')->get('/api', function () {
+Route::get('/api/monitors', function () {
     return response()
         ->json([
             ['id' => '1', 'name' => 'AVL', 'url' => 'https://www.avl.com'],
