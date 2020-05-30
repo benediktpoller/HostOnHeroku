@@ -24,3 +24,10 @@ Route::get('/api/monitors', function () {
             ['id' => '2', 'name' => 'ASFINAG', 'url' => 'https://asfinag.at']
         ]);
 });
+
+Route::get('/api/monitors/{id}', function ($id) {
+    return response()
+        ->json(
+            ['id' => $id, 'name' => 'AVL', 'url' => 'https://www.avl.com']
+        );
+});
