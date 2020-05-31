@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateMonitorsTable extends Migration
+class CreateRunsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,10 @@ class CreateMonitorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('monitors', function (Blueprint $table) {
+        Schema::create('runs', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('url');
-            $table->string('status');
-            $table->timestamps();
+            $table->timestampsTz();
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +27,6 @@ class CreateMonitorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('monitors');
+        Schema::dropIfExists('runs');
     }
 }

@@ -17,19 +17,12 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/api/monitors', function () {
-    return response()
-        ->json([
-            ['id' => '1', 'name' => 'AVL', 'url' => 'https://www.avl.com'],
-            ['id' => '2', 'name' => 'ASFINAG', 'url' => 'https://asfinag.at']
-        ]);
-});
-
-Route::get('/api/monitors/{id}', function ($id) {
-    return response()
-        ->json(
-            ['id' => $id, 'name' => 'AVL', 'url' => 'https://www.avl.com']
-        );
-});
-
 Route::get('mail', 'MailController@show');
+
+Route::prefix('api/v1')->group(function () {
+    Route::get('sites', 'SiteController@index');
+    Route::post('sites', 'SiteController@add');
+    Route::get('sites/{id}', 'SiteController@get');
+    Route::put('sites/{id}', 'SiteController@update');
+    Route::delete('sites/{id}', 'SiteController@delete');
+});
