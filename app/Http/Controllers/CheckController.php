@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Mail;
-use \App\Site;
 
-class SiteController extends Controller
+class CheckController extends Controller
 {
     public function index()
     {
@@ -15,7 +14,7 @@ class SiteController extends Controller
 
     public function paginated()
     {
-        $sites = \App\Site::orderBy('label', 'asc')->paginate(10);
+        $sites = Check::orderBy('label', 'asc')->paginate(10);
         return response()->json($sites);
     }
 
@@ -31,7 +30,7 @@ class SiteController extends Controller
 
     public function get($id)
     {
-        $site = \App\Site::find($id);
+        $site = Check::find($id);
         return response()->json($site);
     }
 }

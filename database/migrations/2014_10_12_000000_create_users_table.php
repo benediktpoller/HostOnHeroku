@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -13,23 +14,33 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('users');
+
         Schema::create('users', function (Blueprint $table) {
-            $table->id();
-            $table->uuid('uuid')->nullable();
+            $table->uuid('id')->primary();
 
             $table->string('firstname', 100)->nullable();
             $table->string('lastname', 100)->nullable();
 
-            $table->string('name', 100);
             $table->string('email', 100)->unique();
             $table->timestamp('email_verified_at')->nullable();
-            
-            $table->string('password');
+
+            // TODO unique phone (... handed over, office phone)
+            $table->string('phone', 100)->nullable();
+            $table->timestamp('phone_verified_at')->nullable();
+
             $table->rememberToken();
 
             $table->softDeletes();
             $table->timestampsTz();
         });
+
+        $m = new User([
+            'firstname' => 'Benedikt',
+            'lastname' => 'Poller',
+            'email' => 'benedikt.poller@gmail.com'
+        ]);
+        $m->save();
     }
 
     /**

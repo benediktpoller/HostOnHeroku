@@ -13,7 +13,7 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        //
+        Commands\MonitorCommand::class,
     ];
 
     /**
@@ -24,7 +24,20 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
+        // $filePath = 'command.log';
+
+        $minutes = array(1, 5, 10, 30, 60);
+
+        foreach ($minutes as $minute) {
+            // run tests every minute
+            $schedule->command('monitor:run ' . $minute)->cron('*/' . $minute . ' * * * *')
+                ->withoutOverlapping()
+                ->onOneServer()
+                ->runInBackground()
+                ->evenInMaintenanceMode()
+                // ->appendOutputTo($filePath)
+                ->emailOutputTo('benedikt.poller+monitor@gmail.com');
+        }
     }
 
     /**
@@ -34,7 +47,7 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
-        $this->load(__DIR__.'/Commands');
+        $this->load(__DIR__ . '/Commands');
 
         require base_path('routes/console.php');
     }
