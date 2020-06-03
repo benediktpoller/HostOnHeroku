@@ -13,6 +13,8 @@ class AccountUser extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('account_user');
+        
         Schema::create('account_user', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
@@ -27,8 +29,6 @@ class AccountUser extends Migration
      */
     public function down()
     {
-        Schema::table('account_user', function (Blueprint $table) {
-            //
-        });
+        Schema::dropIfExists('account_user');
     }
 }

@@ -42,7 +42,7 @@ Route::prefix('api/v1')->group(function () {
     Route::delete('contacts/{id}', 'ContactsController@delete');
 
     Route::get('accounts', 'AccountsController@index');
-    Route::post('accounts', 'AccountsController@add');
+    // Route::post('accounts', 'AccountsController@add');
     Route::get('accounts/{id}', 'AccountsController@get');
     Route::put('accounts/{id}', 'AccountsController@update');
     Route::delete('accounts/{id}', 'AccountsController@delete');
@@ -54,3 +54,5 @@ Route::prefix('api/v1')->group(function () {
 
     Route::get('mail', 'MailController@show');
 });
+
+Route::get('status', 'StatusController@index');

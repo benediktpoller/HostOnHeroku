@@ -2,10 +2,11 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Monitor as ModelsMonitor;
 use Illuminate\Console\Command;
 use Symfony\Component\Process\Process;
 
-use \App\Monitor;
+use \App\Models\Monitor;
 use Illuminate\Support\Facades\Http;
 
 class MonitorCommand extends Command
@@ -34,7 +35,7 @@ class MonitorCommand extends Command
         $interval = $this->argument('interval');
 
         // TODO limit monitor$monitors to server (server1 1-100, server2 101-200,...)
-        $monitors = Monitor::orderBy('label', 'asc')->where('minutes_interval', $interval)->get();
+        $monitors = Monitor::orderBy('label', 'asc')->where('interval', $interval)->get();
 
         foreach ($monitors as $monitors) { 
 

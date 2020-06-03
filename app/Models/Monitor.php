@@ -14,7 +14,11 @@ class Monitor extends AbstractModel
      */
     protected $fillable = [
         'label',
-        'url'
+        'url',
+        'interval',
+        'type',
+        'method',
+        "status"
     ];
 
     public static $createRules = [

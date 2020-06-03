@@ -30,7 +30,7 @@ class Monitors extends Migration
             //$table->json('headers')->nullable();
             $table->integer('port')->default(80);
             $table->integer('interval')->default(60);
-            $table->boolean('status')->default(200);
+            $table->integer('status')->default(200);
             $table->integer('monitor_group')->default(0);
             $table->boolean('is_group_main')->default(false);
 
@@ -44,18 +44,24 @@ class Monitors extends Migration
 
         $m = new Monitor([
             'label' => 'AVL Test Preview',
-            'url' => 'https://auth92.avl.com/openam/isAlive.jsp'
+            'url' => 'https://auth92.avl.com/openam/isAlive.jsp',
+            'interval' => 5,
+            'status' => 200
         ]);
         $m->save();
 
         $m = new Monitor([
             'label' => 'AVL Preview',
-            'url' => 'https://auth2.avl.com/openam/isAlive.jsp'
+            'url' => 'https://auth2.avl.com/openam/isAlive.jsp',
+            'interval' => 5,
+            'status' => 200
         ]);
 
         $m = new Monitor([
             'label' => 'AVL',
-            'url' => 'https://auth.avl.com/auth/isAlive.jsp'
+            'url' => 'https://auth.avl.com/auth/isAlive.jsp',
+            'interval' => 5,
+            'status' => 200
         ]);
         $m->save();
     }
